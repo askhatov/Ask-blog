@@ -1,0 +1,113 @@
+<!-- <li><a href="{{ object.get_absolute_url }}">{{ blog_post.title }}</a></li> -->
+<style type="text/css">
+	.padding{
+		padding: 10px;
+		margin-top:70px;
+	}
+	
+
+
+
+	.dropdown {
+	  position: relative;
+	  display: inline-block;
+	}
+
+	/*.btn .btn-default{
+		height:200px;
+    	font-size:14pt;
+	}*/
+
+	
+
+	.dropdown a:hover {background-color: #fff;}
+
+	a{
+		color:#1e1e1e;/*Here is the change*/
+		text-align: center;
+	}
+	li:hover {color:#1c1c1c;}/*Here is the change*/
+	.dropdown-menu li a{
+		width: 150px;
+	}
+	div.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);/*Here is the change*/
+}
+	</style>
+{% load avatar_tags %}
+
+<div class="padding">
+<div class='col-8 col-md-6 mb-4 mx-auto'>
+	<div class='card {% if not blog_post.publish_date %} bg-warning text-dark {% endif %}'> 
+	<!-- here we changed the colors of the text and the background -->
+	<div class='card-body'>
+		
+ 	<h4 class="card-title">{{ blog_post.title }}</h4>
+		<h6>@<a class='username' style="color:#474747" href='{{ blog_post.get_user_url }}'>{{ blog_post.user }}</a></h6>
+
+		{% if blog_post.image %}
+			<a href='{{ blog_post.get_absolute_url }}'>
+				<img src="{{ blog_post.image.url }}" class='card-img-top' />
+			</a>
+		{% endif %}
+		<!-- we got this card-body from bootstrap documentation -->
+		<p class='card-text'>
+			<small class='text-muted'>{{ blog_post.publish_date }}</small>
+			{% if truncate %}
+				{{ blog_post.content|linebreaks|truncatewords:30 }}
+			{% else %}
+				{{ blog_post.content|linebreaks }}
+			{% endif %}
+		
+		</p>
+		
+		<li class="dropdown"><!--Here is the change-->
+              <a class="elipsis-drop" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#">
+                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+              </a>
+         
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href='{{ blog_post.get_absolute_url }}'>View</a></li>
+                {% if user == blog_post.user %}
+                <li><a href="{{ blog_post.get_edit_url }}">Edit</a></li>
+                <li><a href="{{ blog_post.get_delete_url }}">Delete</a></li>
+                {% endif %}
+			 </ul>
+		</li>
+
+		
+		{% if detail %}
+		
+		{% if request.user.is_authenticated %}
+
+			{% if  request.user.is_staff or not request.user.is_staff %}
+			<div class='col-12'>
+					
+					<p class='lead'></p>
+					<form method="POST" action='.'>{% csrf_token %}
+					{{ comment_form }}
+					<input type='submit' value='Post comment' class='btn btn-default'>
+			 		</form>
+					<hr/>
+					{% for comment in comments %}
+						<blockquote>
+							<p> {{ comment.content }}</p>
+							<footer>via {{ comment.user }}|{{ comment.timestamp|timesince }}</footer>
+
+						</blockquote>
+						<hr/>
+
+					{% endfor %}
+			</div>
+			{% endif %}
+
+		{% endif %}
+
+		{% endif %}
+
+		
+		
+       	 	</div>
+	</div>
+</div>
+</div>

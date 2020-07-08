@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<style>
+	/**{
+        margin: 0;
+        padding:0;
+    }*/
+	body{
+		background-image: url(https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+        background-size: cover;
+        background-size: no-repeat;
+        background-position: bottom; 
+	}  			
+	body,html{
+        color:white;
+        font-family: 'lato','sans-serif';
+        display:flex;
+        /*justify-content: center;*/
+        align-items: center;
+        min-height: 100vh;
+    }	
+
+	.contact{
+        width: 155%;
+        background-color: rgba(0,0,0,0.7);
+        height:60vh;
+        text-align: center;
+        border-radius:5px;
+    }
+	
+	div.social i {
+        padding: 0 10px;
+        font-size: 30px;
+        color:rgba(255,255,255,0.6);
+        transition: 0.4s;
+    }
+
+    div.social i:hover{
+        color:rgba(255,255,255,1);
+    }
+   
+</style>
+
+<div class="contact">
+
+	<form method="POST" action='.' enctype="multipart/form-data">{% csrf_token %}
+		<h2 class="size-change">Contact me</h2>
+		<!-- <input type='text' name='full_name'>
+		<input type='email' name='email'>
+		<textarea name='content'></textarea> -->
+		<a class='border'>
+			{{ form.as_p }}
+		</a>
+			<button type='submit' class='btn btn-primary'>Submit</button>
+			<br>
+			<br>
+			<div class="social">
+				<a href="https://www.instagram.com/askhatov_m/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+				<a href="https://www.facebook.com/mukhammed.askhatov/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+				<a href="https://www.linkedin.com/in/mukhammed-askhatov-a3bab3150/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+				<a href="https://twitter.com/askhatov"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+			</div>
+	</form>
+
+
+</div>
+{% endblock %}

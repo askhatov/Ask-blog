@@ -1,0 +1,40 @@
+<!-- <li><a href="{{ object.get_absolute_url }}">{{ blog_post.title }}</a></li> --> 
+{% if user == blog_post.user %} 
+<!-- {{ blog_post.user }} -->
+<!-- {{ blog_post }} -->
+<div class='col-8 col-md-4 mb-3 mx-auto'>
+<div class='card {% if not blog_post.publish_date %} bg-warning tixt-dark {% endif %}'> 
+	<!-- here we changed the colors of the text and the background -->
+	<div class='card-body'>
+		<h4 class="card-title">{{ blog_post.title }}</h4>
+		<h6>@<a class='username' style="color:#474747" href='{{ blog_post.get_user_url }}'>{{ blog_post.user }}</a></h6>
+			{% if blog_post.image %}
+			<a href='{{ blog_post.get_absolute_url }}'>
+				<img src="{{ blog_post.image.url }}" class='card-img-top' />
+			</a>
+		{% endif %}
+		<!-- we got this card-body from bootstrap documentation -->
+		<p class='card-text'>
+			<small class='text-muted'>{{ blog_post.publish_date }}</small>
+			{% if truncate %}
+				{{ blog_post.content|linebreaks|truncatewords:30 }}
+			{% else %}
+				{{ blog_post.content|linebreaks }}
+			{% endif %}
+		</p>
+		{% if not detail %}
+			{% if not blog_post.publish_date %} Draft {% endif %}
+			<a href='{{ blog_post.get_absolute_url }}'>View</a>
+			{% if user == blog_post.user %}
+				<a href="{{ blog_post.get_edit_url }}">Edit</a>	
+				<a href="{{ blog_post.get_delete_url }}">Delete</a>
+
+			{% else %}
+				
+			{% endif %}
+		{% endif %}
+
+	</div>
+</div>
+</div>
+{% endif %}

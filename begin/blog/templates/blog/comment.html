@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- comment -->
+			<h2>Add comment</h2>
+			<form action='.' method='POST'>{% csrf_token %}
+
+				{{ comment_form.as_p }}
+
+				<button type='submit'>Add Comment</button>
+			</form>
+
+			<!-- comment list -->
+
+			{% for comment in comments %}
+				<p>{{ comment.Name }} | {{ comment.Created }}</p>
+				{{ comment.Body | linebreaks }}
+
+				{% for reply in comment.replies.all %}
+					<p> {{ reply.Name }} | {{ reply.Email }}</p>
+
+					{{ reply.Body |linebreaks }}
+
+				{% endfor %}
+
+				<p>Reply</p>
+					<form action="." method="POST">{% csrf_token %}
+						{{ comment.as_p }}
+						
+						<input type="hidden" name="Parent_id" value='{{ comment.id }}'>
+
+						<button type='submit'>Reply</button>
+					</form>
+
+
+			{% empty %}
+
+			<h4>There is no comment... </h4>
+
+			{% endfor %}
+{% endblock %}

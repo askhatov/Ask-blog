@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+		{% for object in object_list %}
+			
+				{% include "blog/blog-inline.html" with blog_post=object truncate=True detail=False %}
+				<!-- we choose how to name the variable like blog_post -->
+				
+		{% endfor %}
+
+		
+{% endblock %}

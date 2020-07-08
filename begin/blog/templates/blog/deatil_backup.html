@@ -1,0 +1,25 @@
+{% if request.user.is_authenticated %}
+
+	{% if  request.user.is_staff or not request.user.is_staff %}
+	<div class='col-12'>
+			<a href="{{ object.get_edit_url }}">Edit</a>
+			<a href="{{ object.get_delete_url }}">Delete</a>
+			<p class='lead'>Comment</p>
+			<form method="POST" action='.'>{% csrf_token %}
+			{{ comment_form }}
+			<input type='submit' value='Post comment' class='btn btn-default'>
+	 		</form>
+			<hr/>
+			{% for comment in comments %}
+				<blockquote>
+					<p> {{ comment.content }}</p>
+					<footer>via {{ comment.user }}|{{ comment.timestamp|timesince }} app</footer>
+
+				</blockquote>
+				<hr/>
+
+			{% endfor %}
+	</div>
+	{% endif %}
+
+{% endif %}

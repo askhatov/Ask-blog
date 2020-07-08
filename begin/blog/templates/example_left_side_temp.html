@@ -1,0 +1,80 @@
+<style>
+	.sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 70px;
+        left: 0;
+        /*background-color: #f2f2f2;*/
+        background-color: white;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        border-color: black;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        color: #1e1e1e;
+      }
+
+
+
+      @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+      }
+      .down{
+        text-align: center;
+      }
+
+</style>
+
+
+<div id="mySidenav" class="sidenav">
+  {% load avatar_tags %}
+  <!-- <a href="/account">{% avatar user 25 %}Profile</a> -->
+  {% if user.is_authenticated %}
+    <a href="/account"><i class="fa fa-user-circle" aria-hidden="true"></i> Profile</a>
+  {% endif %}
+  <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> Message</a>
+  <a href="#"><i class="fa fa-compass" aria-hidden="true"></i> Explore</a>
+  <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Saved</a>
+  <a href="#"><i class="fa fa-bell" aria-hidden="true"></i> Notification</a>
+  <div class="down">
+  <li class="dropdown"><!--Here is the change-->
+      <a type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#">
+        <i class="fa fa-ellipsis-h" aria-hidden="true"> More</i>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="/logout"><i></i>Log Out</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </li>
+  </div>
+</div>
+
+
+<span style="font-size:30px;cursor:pointer" onload="openNav()"> </span>
+
+<script>
+window.onload=function() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+
+</script>
+<!-- <form class="form-inline" action='/search/'>
+            <div style="background-color:white; padding:5px; border-style:solid; border-radius:30px; height:50px;"><i class="fa fa-search fa-2x"></i>
+            <input style="border-style:none; border-radius:20px; " type="text" name='q'> </div>
+    </form>   -->
+    <!-- <img src="https://pngimage.net/wp-content/uploads/2018/06/searchicon.png-3.png" alt="Image.png"> -->

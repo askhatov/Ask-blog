@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load avatar_tags %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<style>
+    *{
+        margin: 0;
+        padding:0;
+    }
+    body,html{
+        color:white;
+        font-family: 'lato','sans-serif';
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    body{
+        background-image: url(https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+        background-size: cover;
+        background-size: no-repeat;
+        background-position: bottom; 
+
+    }
+    
+    .center .avatar img{
+        border-radius: 50%;
+        width:140px;
+        height:140px;
+        margin-top: 5%;
+        object-fit:cover;
+        object-position: 0 -8px;
+    }
+    .center{
+        width: 55%;
+        background-color: rgba(0,0,0,0.7);
+        height:70vh;
+        text-align: center;
+        border-radius: 5px;
+    }
+    .content{
+        padding:30px;
+    }
+
+    h1{
+        color:white;
+    }
+    .content h2,
+    p{
+        font-weight: lighter;
+        letter-spacing: 1px;
+        width:70%;
+        margin:10px auto;
+    }
+    .content h2{
+        font-weight: 400;
+    }
+
+    .content h3{
+        margin-top: 20px;
+    }
+    div.social i {
+        padding: 0 10px;
+        font-size: 30px;
+        color:rgba(255,255,255,0.6);
+        transition: 0.4s;
+    }
+
+    div.social i:hover{
+        color:rgba(255,255,255,1);
+    }
+    .contact{
+        color:#fcfcfc;
+    }
+    .contact:hover{
+        color: rgba(255,255,255,1);
+    }
+</style>
+
+
+
+<div class="center">
+    <div class="avatar">
+        <a href="https://sun6-16.userapi.com/quMTc-7qMipeCvoTjmeiiJ4hgSKUjHt7XLWkog/A3gT0NTiIoo.jpg" class="image">
+            <img src="https://sun6-16.userapi.com/quMTc-7qMipeCvoTjmeiiJ4hgSKUjHt7XLWkog/A3gT0NTiIoo.jpg" alt="face">
+        </a>
+    </div>
+    <div class="content">
+        <h2>Mukhammed Askhatov</h2>
+        <p>Analytical Electronics Technologist, enthusiastic about developing, designing and troubleshooting the circuits. Bringing expertise in system setup, programming and repair. Ready to apply the knowledge to a new position.</p>
+        <a class="contact" href="/contact"><h3>Contact me</h3></a>
+        <div class="social">
+            <a href="https://www.instagram.com/askhatov_m/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/mukhammed.askhatov/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/mukhammed-askhatov-a3bab3150/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/askhatov"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</div>
+<script>
+    $('.avatar').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery:{
+            enabled:true
+        }
+    });
+
+</script>
+
+
+{% endblock %}

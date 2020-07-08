@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class='row'>
+	{% for object in object_list %}
+		{% include "blog/comment_list.html" with comment_post=object truncate=True detail=False %}
+		<!-- we choose how to name the variable like blog_post -->
+	{% endfor %}
+
+	</div>
+{% endblock %}

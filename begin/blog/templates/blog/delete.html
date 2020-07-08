@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<style>
+	* {
+	  	box-sizing: border-box;
+	}
+	.object{
+		margin-top: 30px;
+	}
+	.layout{
+	    margin-top: 85px;
+	}
+	@media only screen and (max-width: 320px){
+        body{font-size: 12px;}
+    }
+	.logo{
+        text-align: center;
+        }
+</style>
+<div class="layout">
+<div class='col-8 col-md-4 mb-3 mx-auto'>
+            <div class="card">
+                <div class="card-body">
+					<form method="POST">{% csrf_token %}
+						<div class="logo">
+		                    <img src="https://sun9-10.userapi.com/MUqNF8osDKgHdm5BW6RtiPOR9FfVbQt501xOrQ/pnhEbjLJe0Y.jpg" width="320" height="100">
+		                </div>
+						<div class="object">
+							{{ form|crispy }}
+							<h3> Are you sure you want to delete the following:</h3>
+							<p>{{object.title}}</p>
+							<img src="{{ object.image.url }}" class='card-img-top' />
+							<p>{{ object.content }}</p>
+							<button class='btn btn-danger'>Yes, delete</button>
+						</div>
+					</form>
+				</div>
+			</div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+</div>
+<div class="padding">
+<div class='col-12 col-md-5 mb-7 mx-auto'>
+<div class='card {% if not news_post.publish_date %} bg-light text-dark {% endif %}'>
+        <!-- here we changed the colors of the text and the background -->
+        <div class='card-body'>
+
+                <h4><a class='username' href='{{ news_post.get_user_url }}'>{{ news_post.user }}</a></h4>
+                <hr>
+
+                {% if news_post.image %}
+                        <a href='{{ news_post.get_absolute_url }}'>
+                                <img src="{{ news_post.image.url }}" class='card-img-top' />
+                        </a>
+                {% endif %}
+                <!-- we got this card-body from bootstrap documentation -->
+                <h5 class="card-title">{{ news_post.title }}</h5>
+                <p class='card-text'>
+                        <small class='text-muted'>{{ news_post.publish_date }}</small>
+                        {% if truncate %}
+                                {{ news_post.content|linebreaks|truncatewords:30 }}
+                        {% else %}
+                                {{ news_post.content|linebreaks }}
+                        {% endif %}
+                </p>
+                {% if not detail %}
+                        {% if not news_post.publish_date %} Draft {% endif %}
+                        <a href='{{ news_post.get_absolute_url }}'>View</a>
+                {% endif %}
+                        {% if user == news_post.user %}
+                                <a href="{{ news_post.get_edit_url }}">
+                                                {% endif %}
+                        {% if user == news_post.user %}
+                                <a href="{{ news_post.get_edit_url }}">
+                                        <img type="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxXHj6nu8jKVppFJcA_ChDIS-rsBsZ2T2xrcqPmGV6_AnsdArs&s" width="20px" height="20px" />
+                                </a>
+                                <a href="{{ news_post.get_delete_url }}">
+                                        <img type="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb5_4D280qwNJxeFgtw24ngezpcCOdjHZGfeR7ojYTvuDtV433&s" width="20px" height="20px" />
+                                </a>
+
+                        {% else %}
+
+
+                        {% endif %}
+
+
+
+
+                </div>
+        </div>
+</div>
+</div>

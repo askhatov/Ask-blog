@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ user }}
+
+
+<div class='row'>
+	<div class='col-12 col-8 mx-auto'>
+
+		{{ object_list }}
+		
+	{% for blog_item in object_list %}
+			{% include "profile2.html" with blog_post=blog_item truncate=True detail=False %}
+	{% endfor %}
+	</div>
+</div>
+{% endblock %}

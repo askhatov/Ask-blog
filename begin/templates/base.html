@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <title>{% block title %}Askhatov Blog{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link  rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"  crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    
+    <style>
+      * {
+          box-sizing: border-box;
+        }
+        form.form-inline input[type=search]{
+              width: 355px;
+              box-sizing: border-box;
+              border: 1px solid white;
+              border-radius: 40px;
+              font-size: 16px;
+              background-color: white;
+              box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19);/*Here is the change*/
+              background-image: url('/media/image/searchicon.png');
+              background-position: 10px 10px; 
+              background-size: 15px 15px;
+              background-repeat: no-repeat;
+              padding: 8px 20px 12px 40px;
+              -webkit-transition: width 0.4s ease-in-out;
+              transition: width 0.4s ease-in-out;
+        }
+       
+        .align{
+          text-align:center;
+          /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          border-radius: 40px;
+*/        }
+        body{
+          background-color: #f2f2f2;
+        }
+
+        .dropdown {
+          position: relative;
+          display: inline-block;
+          font-weight: bold; color:white
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          padding: 12px 16px;
+          z-index: 1;
+          font-weight: normal;
+          color:black;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        /*.navbar {
+          -webkit-box-shadow: 0 8px 6px -6px #999;
+          -moz-box-shadow: 0 8px 6px -6px #999;
+          box-shadow: 0 8px 6px -6px #999;
+        }*/
+        
+.navbar-custom { 
+    background-color: #79d9d4; 
+    border-bottom: 0.2px solid grey;
+    border-bottom-width: thin; 
+
+} 
+.navbar-custom .navbar-brand, 
+        .navbar-custom .navbar-text { 
+            color: green; 
+
+        } 
+      
+    .navbar-custom .navbar-brand a:hover{
+      color: black;
+    }
+    a:hover{
+      color:#000;
+    }
+    /*img{
+      border-radius: 40px;
+    }*/
+    body,html{
+        font-family: 'lato','sans-serif';
+        min-height: 100vh;
+    }
+
+    </style>
+  </head>
+  <body>
+    {% load avatar_tags %}
+
+    <!-- {% include "navbar.html" %} -->
+  <nav class="navbar navbar-fixed-top navbar-custom fixed-top">
+    <a class="navbar-brand" href="/">
+      <img type="image" src="https://sun6-16.userapi.com/LG7j9yRCkdptVWBZYkuFFF0SiP356hJw1J7ImA/HDZsAyH0vz4.jpg" width="45px" height="45px"/>
+    </a>
+   
+
+    
+          <a class="nav-link" href="/" style="font-weight: bold; color:white">Blog</a>
+          <a class="nav-link" href="/contact" style="font-weight: bold; color:white">Contact</a>
+          <a class="nav-link" href="/gallery" style="font-weight: bold; color:white">Gallery</a>
+
+       <!--    {% if user.is_authenticated %}
+              <a class="nav-link" href="/account" style="font-weight: bold; color:white">Profile</a>
+              <a class="nav-link" href="/logout" style="font-weight: bold; color:white">Log Out</a>
+          {% endif %} -->
+
+          <!--<a class="nav-link" href="/blog" style="font-weight: bold; color:white !important" >Blog</a>-->
+        
+          <a class="nav-link" href="/blog-new" style="font-weight: bold; color:white !important">Create</a>
+
+
+          <div class="dropdown">
+            <span>More</span>
+            <div class="dropdown-content">
+              {% if user.is_authenticated %}
+                <p><a class="nav-link" href="/account">Profile</a></p>
+                <p><a class="nav-link" href="/logout">Log Out</a></p>
+              {% endif %}
+              {% if not user.is_authenticated %}
+                <p><a class="nav-link" href="/login">Sign in</a></p>
+                <p><a class="nav-link" href="/register">Sign up</a></p>
+              {% endif %}
+            </div>
+          </div>
+
+       
+          <!-- {% if not user.is_authenticated %}
+          <a class="nav-link" href="/login" style="font-weight: bold; color:white !important">Login</a>
+          {% endif %} -->
+      </ul>
+      <form class="form-inline" action='/search/'>
+      <!-- <form class="form-inline my-2 my-lg-0" action='/search/'> -->
+        {% if user.is_authenticated %}
+        <div class="align">
+            <input class="fa fa-search" type="search" name='q' placeholder="Search" aria-label="Search">
+        </div>
+        {% endif %}
+      </form>
+    </div>
+  <!-- </nav> -->
+</nav>
+
+
+  	<div class='container-fluid'>
+  		
+          {% block content %}
+          Replace this value
+          {% endblock %}
+  			
+  	</div>
+    {% include "js.html" %}
+  </body>
+</html>
+
+

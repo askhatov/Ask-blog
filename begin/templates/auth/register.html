@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+  
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+<style>
+        .form{
+                margin-top:85px;
+        }
+        .login{
+                color:black;
+                text-align:center;
+        }
+        button[type=submit]{
+                background-color:#79d9d4;
+        }
+        button[type=submit]:hover{
+                background-color:#79d9d4;
+        }
+        .logo{
+                text-align: center;
+        }
+</style>
+<div class="form">
+        <div class='col-8 col-md-4 mb-3 mx-auto'>
+              <div class="card">
+                <div class="card-body">
+                        <div class="logo">
+                                <img src="https://sun9-10.userapi.com/MUqNF8osDKgHdm5BW6RtiPOR9FfVbQt501xOrQ/pnhEbjLJe0Y.jpg" alt="Cinque Terre" width="320" height="100"/>
+                        </div>
+
+                        <form method="POST">  {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ next }}">{{ form|crispy }}
+                        <button type="submit" class='btn btn-primary btn-block'>Sign up</button>
+                </form>
+                <br>
+                <p class="login"><i>Have an account?
+                        <a href="/login">Sign in</a><i>
+                </p>
+                </div>
+        </div>  
+</div>
+{% endblock %}
