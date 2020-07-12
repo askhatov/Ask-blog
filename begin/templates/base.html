@@ -63,11 +63,6 @@
         .dropdown:hover .dropdown-content {
           display: block;
         }
-        /*.navbar {
-          -webkit-box-shadow: 0 8px 6px -6px #999;
-          -moz-box-shadow: 0 8px 6px -6px #999;
-          box-shadow: 0 8px 6px -6px #999;
-        }*/
         
 .navbar-custom { 
     background-color: #79d9d4; 
@@ -111,48 +106,33 @@
           <a class="nav-link" href="/" style="font-weight: bold; color:white">Blog</a>
           <a class="nav-link" href="/contact" style="font-weight: bold; color:white">Contact</a>
           <a class="nav-link" href="/gallery" style="font-weight: bold; color:white">Gallery</a>
-
-       <!--    {% if user.is_authenticated %}
-              <a class="nav-link" href="/account" style="font-weight: bold; color:white">Profile</a>
-              <a class="nav-link" href="/logout" style="font-weight: bold; color:white">Log Out</a>
-          {% endif %} -->
-
-          <!--<a class="nav-link" href="/blog" style="font-weight: bold; color:white !important" >Blog</a>-->
-        
           <a class="nav-link" href="/blog-new" style="font-weight: bold; color:white !important">Create</a>
+          <a class="nav-link" href="/account" style="font-weight: bold; color:white !important">Profile</a>
 
+          {% if user.is_authenticated %}
+                <a class="nav-link" href="/logout" style="font-weight: bold; color:white !important">Log Out</a>
+          {% endif %}
 
-          <div class="dropdown">
-            <span>More</span>
-            <div class="dropdown-content">
-              {% if user.is_authenticated %}
-                <p><a class="nav-link" href="/account">Profile</a></p>
-                <p><a class="nav-link" href="/logout">Log Out</a></p>
-              {% endif %}
-              {% if not user.is_authenticated %}
-                <p><a class="nav-link" href="/login">Sign in</a></p>
-                <p><a class="nav-link" href="/register">Sign up</a></p>
-              {% endif %}
+          {% if not user.is_authenticated %}
+
+            <div class="dropdown">
+              <span>More</span>
+              <div class="dropdown-content">
+                  <p><a class="nav-link" href="/login">Sign in</a></p>
+                  <p><a class="nav-link" href="/register">Sign up</a></p>
+              </div>
             </div>
-          </div>
-
-       
-          <!-- {% if not user.is_authenticated %}
-          <a class="nav-link" href="/login" style="font-weight: bold; color:white !important">Login</a>
-          {% endif %} -->
+          {% endif %}
       </ul>
       <form class="form-inline" action='/search/'>
-      <!-- <form class="form-inline my-2 my-lg-0" action='/search/'> -->
-        {% if user.is_authenticated %}
+       
         <div class="align">
             <input class="fa fa-search" type="search" name='q' placeholder="Search" aria-label="Search">
         </div>
-        {% endif %}
+        
       </form>
     </div>
-  <!-- </nav> -->
 </nav>
-
 
   	<div class='container-fluid'>
   		
@@ -164,5 +144,3 @@
     {% include "js.html" %}
   </body>
 </html>
-
-
